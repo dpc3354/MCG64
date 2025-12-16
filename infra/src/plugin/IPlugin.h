@@ -51,6 +51,9 @@ public:
      */
     virtual QWidget* createWidget() = 0;
 
+    virtual QIcon icon() const = 0;          // 插件图标
+    virtual QString displayName() const = 0; // 显示名称（用于按钮）
+
     /**
      * @brief 插件是否启用
      */
