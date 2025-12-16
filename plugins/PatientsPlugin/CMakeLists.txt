@@ -16,17 +16,22 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 
 # 插件源文件
 set(PLUGIN_SOURCES
-    
+    src/patientsplugin.cpp
 )
 
 set(PLUGIN_HEADERS
-    
+    src/patientsplugin.h
+)
+
+set(PLUGIN_FORMS
+    src/patientsplugin.ui
 )
 
 # 创建插件库
 add_library(${PROJECT_NAME} SHARED
     ${PLUGIN_SOURCES}
-    ${PLUGIN_HEADERS}
+    ${PLUGIN_HEADERS}   
+    ${PLUGIN_FORMS}
 )
 
 # 链接Qt库
@@ -37,7 +42,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 # 设置include路径
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/infra/plugin
+    ${CMAKE_SOURCE_DIR}/infra/src/plugin
+    ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 # 设置插件属性
