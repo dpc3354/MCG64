@@ -37,6 +37,12 @@ target_link_libraries(MCG64
 )
 target_link_libraries(MCG64 PRIVATE Qt6::Core)
 
+# 设置include路径
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR}
+)
+
 # 编译插件
 add_subdirectory(plugins/PatientsPlugin)
 add_subdirectory(plugins/AnalysisPlugin)
