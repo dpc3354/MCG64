@@ -1,6 +1,7 @@
 #include "patientsplugin.h"
 #include "IPlugin.h"
 #include "ui_patientsplugin.h"
+#include <qstyle.h>
 
 PatientsPlugin::PatientsPlugin(QWidget *parent)
     : QWidget(parent), ui(new Ui::PatientsPlugin), m_enabled(false),
@@ -41,7 +42,7 @@ QWidget *PatientsPlugin::createWidget() {
 
 QIcon PatientsPlugin::icon() const
 {
-    return QIcon::fromTheme("applications-system");
+    return style()->standardIcon(QStyle::SP_FileDialogListView);
 }
 
 QString PatientsPlugin::displayName() const
