@@ -90,9 +90,9 @@ bool PluginManager::loadPlugin(const QString &filePath)
     m_pluginLoaders.insert(pluginName, loader);
     m_plugins.insert(pluginName, plugin);
 
-    qInfo() << "Plugin loaded successfully:" << pluginName 
-            << "version:" << plugin->version();
-    
+    qInfo() << "Plugin loaded successfully:" << pluginName << "version:" << plugin->version()
+            << "enable:" << plugin->isEnabled();
+
     emit pluginLoaded(plugin);
     return true;
 }
