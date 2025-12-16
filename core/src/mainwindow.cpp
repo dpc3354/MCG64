@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 左侧按钮栏
     sidebarWidget = new QWidget();
-    sidebarWidget->setFixedWidth(60);                                     // 固定宽度，类似 VSCode
+    sidebarWidget->setFixedWidth(100);                                    // 固定宽度，类似 VSCode
     sidebarWidget->setStyleSheet("QWidget { background-color: #2C2C2C; }" // 深色背景
     );
 
@@ -104,10 +104,12 @@ void MainWindow::addPluginToSidebar(IPlugin *plugin)
     QToolButton *button = new QToolButton();
     button->setIcon(plugin->icon());
     button->setToolTip(plugin->displayName());
+    button->setText(plugin->displayName());
     button->setCheckable(true);
     button->setAutoRaise(true);
-    button->setIconSize(QSize(32, 32));
-    button->setFixedSize(50, 50);
+    button->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    button->setIconSize(QSize(40, 40));
+    button->setFixedSize(100, 80);
 
     // 按钮样式
     button->setStyleSheet("QToolButton {"
