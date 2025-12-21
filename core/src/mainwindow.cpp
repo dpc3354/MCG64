@@ -8,6 +8,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , nextButtonId(0)
 {
     ui->setupUi(this);
 
@@ -72,11 +73,13 @@ void MainWindow::onPluginLoaded(IPlugin *plugin)
     if (!plugin)
         return;
 
-    QString logMsg = QString("插件已加载: %1 (版本: %2)").arg(plugin->name()).arg(plugin->version());
+    QString logMsg = QString("插件已加载: %1 (版本: %2)").arg(plugin->name(), plugin->version());
 
     QWidget *pluginWidget = plugin->createWidget();
 
     int stackIndex = contentStack->addWidget(pluginWidget);
+
+    qDebug() << stackIndex << " " << logMsg;
 
     addPluginToSidebar(plugin);
 }
@@ -95,7 +98,7 @@ void MainWindow::onSidebarButtonClicked(int id)
     // buttonId 和 stackIndex 是对应的（按加载顺序）
     contentStack->setCurrentIndex(id);
 
-    qDebug() << "Switched to plugin:" << pluginMap[id]->name();
+    qDebug() << "id: " << id << "Switched to plugin:" << pluginMap[id]->name();
 }
 
 void MainWindow::addPluginToSidebar(IPlugin *plugin)
