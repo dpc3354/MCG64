@@ -16,7 +16,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core Sql)
 
 qt_standard_project_setup()
 
@@ -28,14 +28,21 @@ qt_add_executable(MCG64
     core/src/mainwindow.ui
     infra/src/plugin/IPlugin.h
     infra/src/plugin/pluginmanager.h infra/src/plugin/pluginmanager.cpp
+    infra/src/patient/patientlistform.h infra/src/patient/patientlistform.cpp infra/src/patient/patientlistform.ui
+    infra/src/database/databasemanager.h infra/src/database/databasemanager.cpp
+    infra/src/database/baserepository.h infra/src/database/baserepository.cpp
+    infra/src/models/user.h infra/src/models/user.cpp
+    infra/src/repositories/userrepository.h infra/src/repositories/userrepository.cpp
 )
 
 target_link_libraries(MCG64
     PRIVATE
         Qt::Core
         Qt::Widgets
+        Qt6::Sql
 )
 target_link_libraries(MCG64 PRIVATE Qt6::Core)
+target_link_libraries(MCG64 PRIVATE Qt6::Sql)
 
 # 设置include路径
 target_include_directories(${PROJECT_NAME} PRIVATE
