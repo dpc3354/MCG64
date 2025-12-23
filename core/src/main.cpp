@@ -1,5 +1,6 @@
-#include "mainwindow.h"
 #include "infra/src/plugin/pluginmanager.h"
+#include "infra/src/database/databasemanager.h"
+#include "mainwindow.h"
 
 #include <QApplication>
 
@@ -31,6 +32,12 @@ int main(int argc, char *argv[])
     // 加载插件
     int loadedCount = pluginManager.loadPlugins(pluginDir);
     qInfo() << "Total plugins loaded:" << loadedCount;
+
+    // // 初始化数据库
+    if (!DatabaseManager::instance().initialize("mcg.db")) {
+        return -1;
+    }
+
 
     mainWindow.show();
     return app.exec();

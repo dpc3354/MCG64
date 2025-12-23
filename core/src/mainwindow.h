@@ -5,7 +5,9 @@
 #include <QListWidget>
 #include <QMainWindow>
 #include <QStackedWidget>
-#include "infra/src/plugin/pluginmanager.h"
+
+#include <common/infra/src/plugin/IPlugin.h>
+#include <common/infra/src/plugin/pluginmanager.h>
 
 QT_BEGIN_NAMESPACE
 

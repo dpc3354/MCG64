@@ -1,0 +1,2 @@
+add_subdirectory(PatientsPlugin)
+add_subdirectory(AnalysisPlugin)

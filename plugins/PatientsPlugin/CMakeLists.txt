@@ -38,24 +38,26 @@ add_library(${PROJECT_NAME} SHARED
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Widgets
+    common
 )
 
 # 设置include路径
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/infra/src/plugin
+    ${CMAKE_SOURCE_DIR}/common/infra/src/plugin
+    ${CMAKE_SOURCE_DIR}/common/infra/src/patient
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 # 设置插件属性
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins
+    LIBRARY_OUTPUT_DIRECTORY ${PLUGIN_OUTPUT_DIR}
+    RUNTIME_OUTPUT_DIRECTORY ${PLUGIN_OUTPUT_DIR}
 )
 
 # 如果是Windows，设置.dll输出到plugins目录
 if(WIN32)
     set_target_properties(${PROJECT_NAME} PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin/plugins
-        RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin/plugins
+        LIBRARY_OUTPUT_DIRECTORY ${PLUGIN_OUTPUT_DIR}
+        RUNTIME_OUTPUT_DIRECTORY ${PLUGIN_OUTPUT_DIR}
     )
 endif()

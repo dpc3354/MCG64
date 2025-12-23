@@ -1,9 +1,8 @@
 #ifndef USERREPOSITORY_H
 #define USERREPOSITORY_H
 
-#include <infra/src/database/baserepository.h>
-
-#include <infra/src/models/user.h>
+#include "common/infra/src/models/user.h"
+#include "common/infra/src/database/baserepository.h"
 
 
 class UserRepository : public BaseRepository
