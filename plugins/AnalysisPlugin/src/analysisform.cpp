@@ -1,6 +1,9 @@
 #include "analysisform.h"
 #include "ui_analysisform.h"
+#include <pluginmanager.h>
+#include <qdialog.h>
 #include <qstyle.h>
+#include <QMessageBox>
 
 AnalysisForm::AnalysisForm(QWidget *parent)
     : QWidget(parent)
@@ -51,6 +54,11 @@ QWidget *AnalysisForm::createWidget()
     return this;
 }
 
+bool AnalysisForm::isOnIconBar() const
+{
+    return true;
+}
+
 QIcon AnalysisForm::icon() const
 {
     return style()->standardIcon(QStyle::SP_FileLinkIcon);
@@ -69,4 +77,31 @@ bool AnalysisForm::isEnabled() const
 void AnalysisForm::setEnabled(bool enabled)
 {
     m_enabled = enabled;
+}
+
+void AnalysisForm::showEvent(QShowEvent *event)
+{
+    // 检查报告插件是否存在
+    if (PluginManager::instance()->hasPlugin("Report Plugin")) {
+        qDebug() << "Report plugin detected, display report button";
+
+        connect(ui->pushButton_3, &QPushButton::clicked, [this]() {
+            // 获取报告插件
+            IPlugin* reportPlugin = PluginManager::instance()->getPlugin("Report Plugin");
+            if (reportPlugin) {
+                // 创建并显示报告对话框
+                QDialog* reportDialog = reportPlugin->createDialog(this);
+                if (reportDialog) {
+                    reportDialog->exec();
+                    delete reportDialog;
+                } else {
+                    QMessageBox::warning(this, "错误", "无法创建报告界面");
+                }
+            }
+        });
+    } else {
+        qDebug() << "Report plugin not available";
+        ui->pushButton_3->hide();
+    }
+    QWidget:show();
 }

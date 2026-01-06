@@ -13,12 +13,10 @@ int main(int argc, char *argv[])
     app.setApplicationName("Qt Plugin Framework");
     app.setApplicationVersion("1.0.0");
 
-    // 创建插件管理器
-    PluginManager pluginManager;
 
     // 创建并显示主窗口
     MainWindow mainWindow;
-    mainWindow.setPluginManager(&pluginManager);
+    mainWindow.setPluginManager(PluginManager::instance());
 
     // 获取插件目录路径
     QString pluginDir = QCoreApplication::applicationDirPath() + "/plugins";
@@ -30,7 +28,7 @@ int main(int argc, char *argv[])
     qInfo() << "Loading plugins from:" << pluginDir;
 
     // 加载插件
-    int loadedCount = pluginManager.loadPlugins(pluginDir);
+    int loadedCount = PluginManager::instance()->loadPlugins(pluginDir);
     qInfo() << "Total plugins loaded:" << loadedCount;
 
     // // 初始化数据库

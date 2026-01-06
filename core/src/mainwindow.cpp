@@ -75,6 +75,10 @@ void MainWindow::onPluginLoaded(IPlugin *plugin)
 
     QString logMsg = QString("插件已加载: %1 (版本: %2)").arg(plugin->name(), plugin->version());
 
+    if (!plugin->isOnIconBar()) {
+        return;
+    }
+
     QWidget *pluginWidget = plugin->createWidget();
 
     int stackIndex = contentStack->addWidget(pluginWidget);

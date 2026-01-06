@@ -1,22 +1,19 @@
-#ifndef PATIENTSPLUGIN_H
-#define PATIENTSPLUGIN_H
+#ifndef REPORTPLUGIN_H
+#define REPORTPLUGIN_H
 
-#include "IPlugin.h"
-#include <QWidget>
+#include <IPlugin.h>
 
-namespace Ui {
-class PatientsPlugin;
-}
 
-class PatientsPlugin : public QWidget, public IPlugin
+
+class ReportPlugin : public QObject ,public IPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "com.example.IPlugin/1.0")
     Q_INTERFACES(IPlugin)
 
 public:
-    explicit PatientsPlugin(QWidget *parent = nullptr);
-    ~PatientsPlugin();
+    ReportPlugin();
+    ~ReportPlugin() = default;
 
     bool initialize() override;
     void uninitialize() override;
@@ -24,7 +21,8 @@ public:
     QString version() const override;
     QString description() const override;
     QString author() const override;
-    QWidget* createWidget() override;  // 直接返回this
+    QWidget* createWidget() override;  // 直接返回nullptr
+    QDialog* createDialog(QWidget* parent = nullptr) override;
     bool isOnIconBar() const override;
     QIcon icon() const override;
     QString displayName() const override;
@@ -32,10 +30,8 @@ public:
     void setEnabled(bool enabled) override;
 
 private:
-    Ui::PatientsPlugin *ui;
-
     bool m_enabled;
     bool m_initialized;  // 标记是否已初始化UI
 };
 
-#endif // PATIENTSPLUGIN_H
+#endif // REPORTPLUGIN_H

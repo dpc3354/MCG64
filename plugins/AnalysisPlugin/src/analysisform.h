@@ -25,10 +25,14 @@ public:
     QString description() const override;
     QString author() const override;
     QWidget* createWidget() override;  // 直接返回this
+    bool isOnIconBar() const override;
     QIcon icon() const override;
     QString displayName() const override;
     bool isEnabled() const override;
     void setEnabled(bool enabled) override;
+
+protected:
+    void showEvent(QShowEvent *event) override;
 
 private:
     Ui::AnalysisForm *ui;

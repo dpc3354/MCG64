@@ -40,6 +40,11 @@ QWidget *PatientsPlugin::createWidget() {
     return this;
 }
 
+bool PatientsPlugin::isOnIconBar() const
+{
+    return true;
+}
+
 QIcon PatientsPlugin::icon() const
 {
     return style()->standardIcon(QStyle::SP_FileDialogListView);

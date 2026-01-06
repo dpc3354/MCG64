@@ -13,22 +13,34 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1,1">
    <item>
-    <widget class="QWidget" name="widget" native="true">
+    <widget class="PatientListForm" name="widget" native="true">
      <property name="autoFillBackground">
       <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget_2" native="true"/>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QWidget" name="widget_3" native="true"/>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PatientListForm</class>
+   <extends>QWidget</extends>
+   <header>patientlistform.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

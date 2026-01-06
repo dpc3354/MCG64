@@ -51,6 +51,10 @@ public:
      */
     virtual QWidget* createWidget() = 0;
 
+    // 创建对话框（用于弹出式界面）
+    virtual QDialog* createDialog(QWidget* parent = nullptr) { return nullptr; }
+
+    virtual bool isOnIconBar() const = 0;    // 是否显示到侧边按钮栏
     virtual QIcon icon() const = 0;          // 插件图标
     virtual QString displayName() const = 0; // 显示名称（用于按钮）
 

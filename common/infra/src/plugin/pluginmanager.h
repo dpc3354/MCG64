@@ -11,8 +11,9 @@ class PluginManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit PluginManager(QObject *parent = nullptr);
-        ~PluginManager();
+    static PluginManager* instance();
+    PluginManager(const PluginManager&) = delete;
+    PluginManager& operator=(const PluginManager&) = delete;
 
     /**
      * @brief 从指定目录加载所有插件
@@ -35,6 +36,11 @@ public:
      * @brief 根据名称获取插件
      */
     IPlugin* getPlugin(const QString &name) const;
+
+    /**
+     * @brief 检查插件是否存在
+     */
+    bool hasPlugin(const QString& name) const;
 
     /**
      * @brief 获取已加载的插件数量
@@ -64,6 +70,11 @@ private:
     bool loadPlugin(const QString &filePath);
 
 private:
+    PluginManager(QObject* parent = nullptr);
+    ~PluginManager();
+
+    static PluginManager* m_instance;
+
     // 插件加载器映射表 <插件名称, QPluginLoader*>
     QMap<QString, QPluginLoader*> m_pluginLoaders;
     

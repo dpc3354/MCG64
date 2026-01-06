@@ -1,8 +1,18 @@
 #include "pluginmanager.h"
 
+PluginManager* PluginManager::m_instance = nullptr;
+
 PluginManager::PluginManager(QObject *parent)
     : QObject{parent}
 {}
+
+PluginManager *PluginManager::instance()
+{
+    if (!m_instance) {
+        m_instance = new PluginManager();
+    }
+    return m_instance;
+}
 
 PluginManager::~PluginManager()
 {
@@ -134,6 +144,11 @@ QList<IPlugin*> PluginManager::getPlugins() const
 IPlugin* PluginManager::getPlugin(const QString &name) const
 {
     return m_plugins.value(name, nullptr);
+}
+
+bool PluginManager::hasPlugin(const QString &name) const
+{
+    return m_plugins.contains(name);
 }
 
 int PluginManager::getPluginCount() const
