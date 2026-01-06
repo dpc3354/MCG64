@@ -2,8 +2,6 @@
 #include <qsqlerror.h>
 #include <qsqlquery.h>
 
-BaseRepository::BaseRepository() {}
-
 QSqlDatabase BaseRepository::database() const
 {
     return DatabaseManager::instance().database();

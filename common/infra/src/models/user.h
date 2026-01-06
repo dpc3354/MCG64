@@ -22,7 +22,6 @@ public:
     void setCreatedAt(const QDateTime& dt);
 
     bool isValid() const;
-
 private:
     int m_id = -1;
     QString m_username;

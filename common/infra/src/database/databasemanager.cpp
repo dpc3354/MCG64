@@ -68,6 +68,21 @@ bool DatabaseManager::createTables()
         return false;
     }
 
+    QString patientTable = R"(
+        CREATE TABLE IF NOT EXISTS patients (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT UNIQUE NOT NULL,
+            age INT,
+            phone TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    )";
+
+    if (!query.exec(patientTable)) {
+        qCritical() << "Create patients table failed:" << query.lastError();
+        return false;
+    }
+
     return true;
 }
 

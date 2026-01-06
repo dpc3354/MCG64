@@ -6,9 +6,6 @@
 
 class BaseRepository
 {
-public:
-    BaseRepository();
-
 protected:
     QSqlDatabase database() const;
     bool executeQuery(QSqlQuery& query) const;

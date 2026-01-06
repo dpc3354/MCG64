@@ -19,6 +19,8 @@ add_library(common SHARED
   infra/src/database/baserepository.h infra/src/database/baserepository.cpp
   infra/src/models/user.h infra/src/models/user.cpp
   infra/src/repositories/userrepository.h infra/src/repositories/userrepository.cpp
+  infra/src/models/patient.h infra/src/models/patient.cpp
+  infra/src/repositories/patientrepository.h infra/src/repositories/patientrepository.cpp
 )
 
 target_link_libraries(common PRIVATE
